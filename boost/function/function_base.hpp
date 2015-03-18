@@ -728,11 +728,13 @@ public: // should be protected, but GCC 2.95.3 will fail to allow access
  * The bad_function_call exception class is thrown when a boost::function
  * object is invoked
  */
+#if !defined(BOOST_NO_EXCEPTIONS)
 class bad_function_call : public std::runtime_error
 {
 public:
   bad_function_call() : std::runtime_error("call to empty boost::function") {}
 };
+#endif
 
 #ifndef BOOST_NO_SFINAE
 inline bool operator==(const function_base& f,

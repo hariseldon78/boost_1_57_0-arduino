@@ -760,9 +760,10 @@ namespace boost {
 
     result_type operator()(BOOST_FUNCTION_PARMS) const
     {
+#if !defined(BOOST_NO_EXCEPTIONS)
       if (this->empty())
         boost::throw_exception(bad_function_call());
-
+#endif
       return get_vtable()->invoker
                (this->functor BOOST_FUNCTION_COMMA BOOST_FUNCTION_ARGS);
     }
